@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT-Boost | Твой старт в будущее</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="cursor"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">IT-<span>Boost</span></div>
+            <div class="burger-menu" id="burger-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav" id="nav-menu">
+                <a href="#about">О нас</a>
+                <a href="#services">Услуги</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#contact" class="btn-nav">Связаться</a>
+            </nav>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+
+            <button class="btn-menu">☰</button>
+        </div>
+    </header>
+    <div class="activeMenu">
+        <a href="#about">О нас</a>
+        <a href="#services">Услуги</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contact">Связаться</a>
+    </div>
+
+    <section class="hero">
+        <div class="container hero-content" data-aos="fade-up" data-aos-duration="1200">
+            <h1>Создаем цифровые решения для вашего бизнеса</h1>
+            <p>Профессиональная веб-разработка, современный дизайн и поддержка на всех этапах.</p>
+            <a href="#contact" class="btn-main">Заказать проект</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container stats-grid">
+            <div class="stat-item" data-aos="fade-up">
+                <span class="stat-num">10+</span>
+                <p>Успешных проектов</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <span class="stat-num">5+</span>
+                <p>Лет опыта</p>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                <span class="stat-num">100%</span>
+                <p>Довольных клиентов</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Что мы делаем</h2>
+            <div class="cards-grid">
+
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-icon">💻</div>
+                    <h3>Веб-разработка</h3>
+                    <p>Создаем быстрые лендинги, сайты-визитки и интернет-магазины любой сложности.</p>
+                </div>
+
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-icon">📱</div>
+                    <h3>Адаптивный дизайн</h3>
+                    <p>Ваш сайт будет идеально смотреться на смартфонах, планшетах и компьютерах.</p>
+                </div>
+
+                <div class="card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card-icon">🚀</div>
+                    <h3>SEO и Скорость</h3>
+                    <p>Оптимизируем код для моментальной загрузки и высоких позиций в поиске Google.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container" data-aos="zoom-in" data-aos-duration="800">
+            <h2 class="section-title">Оставить заявку</h2>
+            <p class="contact-subtitle">Заполни форму, и мы свяжемся с вами в скором времени.</p>
+
+            <form class="feedback-form" action="https://formsubmit.co/YOUR_EMAIL@EMAIL.COM" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш Email" required>
+                <textarea name="message" placeholder="Расскажите немного о вашем проекте" rows="5"></textarea>
+                <button type="submit" class="btn-submit">Отправить запрос</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 IT-Boost. Все права защищены. Сделано для портфолио.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+
+            if (document.body.classList.contains('light-theme')) {
+                themeToggle.textContent = '☀️'; 
+            } else {
+                themeToggle.textContent = '🌙'; 
+            }
+        });
+
+
+
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = (e.clientX - 10) + 'px';
+            cursor.style.top = (e.clientY - 10) + 'px';
+        });
+
+
+
+        const btnMenu = document.querySelector('.btn-menu');
+        const activeMenu = document.querySelector('.activeMenu');
+        btnMenu.addEventListener('click', () => {
+            activeMenu.classList.toggle('nav-active');
+        });
+
+        const form = document.querySelector('.feedback-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                alert('Заявка успешно отправлена! Мы свяжемся с вами.');
+                form.reset(); 
+            } else {
+                alert('Что-то пошло не так. Попробуйте позже.');
+            }
+        });
+
+        AOS.init({
+            once: true 
+        });
+
+        document.addEventListener("mousemove", function (e) {
+            const hero = document.querySelector('.hero');
+            const moveX = (e.clientX * -0.05) / 8;
+            const moveY = (e.clientY * -0.05) / 8;
+
+            hero.style.backgroundPosition = `calc(50% + ${moveX}px) calc(50% + ${moveY}px)`;
+        });
+
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
